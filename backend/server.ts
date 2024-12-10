@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { fetchTasks } from './DBOps'
+import { fetchTasks, fetchClients } from './DBOps'
 
 dotenv.config();
 
@@ -18,6 +18,15 @@ app.get('/fetch-tasks', async (req: Request, res: Response) => {
   } catch (err) {
     console.error('Error in fetch-tasks app.get', err)
     res.status(err.status || 500).json({error: err.message || 'Unknown Internal Error'})
+  }
+})
+
+app.get('/fetch-clients', async (req: Request, res: Response) => {
+  try {
+    const clients = await fetchClients()
+  } catch (err) {
+    console.error('err in fetch-clients express', err)
+    res.status(err.status || 500).json(err.message || 'Unknown Internal Error')
   }
 })
 
