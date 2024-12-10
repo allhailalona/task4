@@ -13,7 +13,7 @@ const taskSchema = new mongoose.Schema({
 const Task = mongoose.model('Task', taskSchema, 'tasks');
 
 // Add authentication options
-mongoose.connect('mongodb://admin:password123@localhost:27017/task4?authSource=admin');
+mongoose.connect(process.env.MONGODB_URI); 
 
 // Fun sample data
 const tasks = [
