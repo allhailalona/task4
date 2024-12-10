@@ -24,6 +24,8 @@ app.get('/fetch-tasks', async (req: Request, res: Response) => {
 app.get('/fetch-clients', async (req: Request, res: Response) => {
   try {
     const clients = await fetchClients()
+    
+    res.status(200).json(clients)
   } catch (err) {
     console.error('err in fetch-clients express', err)
     res.status(err.status || 500).json(err.message || 'Unknown Internal Error')

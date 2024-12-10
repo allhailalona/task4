@@ -27,8 +27,7 @@ export async function fetchClients() {
   try {
     await connectDB()
 
-    console.log('about to fetch clients')
-    const clients = await Client.find({})
+    const clients = await Client.find({}, 'name')
     return clients
   } catch (err) {
     console.error('Error in fetchClients DBOp', err)
